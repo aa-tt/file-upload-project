@@ -5,6 +5,10 @@ provider "aws" {
 resource "aws_s3_bucket" "file_upload_bucket" {
   bucket = var.s3_bucket_name
   acl    = "private"
+}
+
+resource "aws_s3_bucket_cors_configuration" "file_upload_bucket_cors" {
+  bucket = aws_s3_bucket.file_upload_bucket.id
 
   cors_rule {
     allowed_headers = ["*"]
