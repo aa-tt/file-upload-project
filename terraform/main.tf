@@ -115,6 +115,12 @@ resource "aws_cloudfront_distribution" "react_frontend" {
     viewer_protocol_policy = "redirect-to-https"
   }
 
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
   viewer_certificate {
     cloudfront_default_certificate = true
   }
