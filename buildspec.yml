@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies for React and Lambda...
+      - cd frontend && npm install
+      - cd ../backend && npm install
+  build:
+    commands:
+      - echo Building React app...
+      - cd ../frontend && npm run build
+      - echo Zipping Lambda function...
+      - cd ../backend && zip -r lambda.zip .
+  post_build:
+    commands:
+      - echo Syncing React build files to S3...
+      - aws s3 sync ../frontend/build/ s3://file-upload-project-bucket/ --delete
+      - echo Invalidating CloudFront cache...
+      - aws cloudfront create-invalidation --distribution-id E3ATBMXKMH02CC --paths "/*"
+      - echo Uploading Lambda zip to S3...
+      - aws s3 cp lambda.zip s3://file-upload-project-bucket/
+      - echo Updating Lambda function code...
+      - aws lambda update-function-code --function-name file-upload-backend --s3-bucket file-upload-project-bucket --s3-key lambda.zip
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: frontend/build
