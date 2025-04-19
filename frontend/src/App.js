@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -29,25 +28,29 @@ function App() {
           ""
         )
       );
-
-      const response = await axios.post(
+      const response = await fetch(
         "https://2dudt58mq2.execute-api.us-east-1.amazonaws.com/dev/upload",
         {
-          fileName: file.name,
-          fileContent: base64Content,
-          metadata,
-        },
-        {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            fileName: file.name,
+            fileContent: base64Content,
+            metadata,
+          }),
         }
       );
-
-      setMessage(response.data.message || "File uploaded successfully!");
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("Upload successful:", data);
     } catch (error) {
       console.error("Error uploading file:", error);
-      setMessage("Failed to upload file.");
     }
   };
 
