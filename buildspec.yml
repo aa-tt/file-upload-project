@@ -22,6 +22,11 @@ phases:
       - aws s3 cp lambda.zip s3://file-upload-project-bucket/
       - echo Updating Lambda function code...
       - aws lambda update-function-code --function-name file-upload-backend --s3-bucket file-upload-project-bucket --s3-key lambda.zip
+      - echo Initializing Terraform...
+      - cd ../terraform
+      - terraform init
+      - echo Applying Terraform configuration...
+      - terraform apply -auto-approve
 
 artifacts:
   files:
