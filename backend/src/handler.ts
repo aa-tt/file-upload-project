@@ -8,7 +8,7 @@ export const uploadFile: APIGatewayProxyHandler = async (event) => {
     return {
       statusCode: 204,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://d1ht9vy8zpicju.cloudfront.net",
         "Access-Control-Allow-Methods": "OPTIONS, POST",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },
@@ -24,7 +24,7 @@ export const uploadFile: APIGatewayProxyHandler = async (event) => {
       return {
         statusCode: 400,
         headers: {
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "https://d1ht9vy8zpicju.cloudfront.net",
           "Access-Control-Allow-Methods": "OPTIONS, POST",
           "Access-Control-Allow-Headers": "Content-Type, Authorization",
         },
@@ -41,7 +41,7 @@ export const uploadFile: APIGatewayProxyHandler = async (event) => {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://d1ht9vy8zpicju.cloudfront.net",
         "Access-Control-Allow-Methods": "OPTIONS, POST",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },
@@ -56,7 +56,7 @@ export const uploadFile: APIGatewayProxyHandler = async (event) => {
     return {
       statusCode: 500,
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://d1ht9vy8zpicju.cloudfront.net",
         "Access-Control-Allow-Methods": "OPTIONS, POST",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },

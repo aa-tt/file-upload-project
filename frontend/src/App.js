@@ -36,6 +36,11 @@ function App() {
           fileName: file.name,
           fileContent: base64Content,
           metadata,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
