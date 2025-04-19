@@ -4,6 +4,10 @@ provider "aws" {
 
 resource "aws_s3_bucket" "file_upload_bucket" {
   bucket = var.s3_bucket_name
+}
+
+resource "aws_s3_bucket_acl" "file_upload_bucket_acl" {
+  bucket = aws_s3_bucket.file_upload_bucket.id
   acl    = "private"
 }
 
