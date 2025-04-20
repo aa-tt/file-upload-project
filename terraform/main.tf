@@ -77,7 +77,7 @@ resource "aws_iam_role" "lambda_execution_role" {
 resource "aws_lambda_function" "file_upload_lambda" {
   function_name = var.lambda_function_name
   runtime       = "nodejs18.x"
-  handler       = "index.handler"
+  handler       = "index.uploadFile"
   role          = aws_iam_role.lambda_execution_role.arn
 
   filename         = "lambda.zip"
